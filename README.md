@@ -119,3 +119,7 @@ src/beamfusion/
 - Each run writes debug-friendly artifacts (`config.json`, `run_meta.json`, `train_log.jsonl`, `summary.json`).
 - CUDA acceleration requires a CUDA-enabled PyTorch build (`torch.cuda.is_available()` should be `True`).
 - The public release intentionally abstracts some comparative-baseline details that remain under active paper preparation.
+
+## License
+
+This repository is released under the Apache-2.0 license. See `LICENSE`.
