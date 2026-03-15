@@ -1,0 +1,64 @@
+seed: 2026
+scenario_root: "E:/6G/scenario36_merged"
+output_dir: "E:/6G/Code/outputs/scenario36_integrated_baseline_fast_1h_4060"
+
+train_ratio: 0.6
+val_ratio: 0.2
+batch_size: 20
+num_workers: 6
+persistent_workers: true
+prefetch_factor: 2
+epochs: 4
+lr: 0.0003
+weight_decay: 0.0001
+grad_clip: 1.0
+
+max_samples: 2400
+max_train_steps: 70
+max_val_steps: 20
+max_wall_time_min: 55.0
+early_stop_patience: 1
+early_stop_min_delta: 0.0005
+
+image_size: 224
+use_dual_view: true
+image_key_a: "unit1_rgb5"
+image_key_b: "unit1_rgb6"
+power_use_log: false
+power_log_clip_min: 1.0e-6
+
+detr_repo: "E:/6G/detr-main"
+detr_variant: "detr_resnet101"
+detr_pretrained: false
+detr_checkpoint_path: "E:/6G/detr-r101-2c7b67e5.pth"
+detr_checkpoint_strict: true
+freeze_detr: true
+topk_queries: 32
+query_pool_mode: "cls_cross_attn"
+query_pool_heads: 4
+cache_scene_features: true
+cache_batch_size: 64
+
+embed_dim: 256
+dropout: 0.1
+modality_dropout_p: 0.1
+consistency_lambda: 0.1
+branch_aux_lambda: 0.4
+gate_reg_lambda: 0.001
+iemf_enabled: false
+iemf_psai: 1.2
+iemf_scale_min: 0.7
+iemf_scale_max: 2.0
+iemf_detach_coeff: true
+ae_enabled: false
+ae_use_vae: false
+ae_latent_dim: 128
+ae_recon_lambda: 0.0
+ae_kl_lambda: 0.0
+
+device: "cuda"
+use_amp: true
+amp_dtype: "float16"
+allow_tf32: true
+cudnn_benchmark: true
+cpu_threads: 14

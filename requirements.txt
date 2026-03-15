@@ -1,0 +1,6 @@
+numpy>=1.24
+torch>=2.4
+torchvision>=0.19
+pillow>=10.0
+pyyaml>=6.0
+scikit-learn>=1.3

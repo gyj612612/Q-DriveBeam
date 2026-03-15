@@ -1,0 +1,47 @@
+seed: 2026
+scenario_root: "E:/6G/scenario36_merged"
+output_dir: "E:/6G/Code/outputs/smoke_cuda_check"
+
+train_ratio: 0.6
+val_ratio: 0.2
+batch_size: 2
+num_workers: 2
+persistent_workers: true
+prefetch_factor: 2
+epochs: 1
+lr: 0.0003
+weight_decay: 0.0001
+grad_clip: 1.0
+
+max_samples: 64
+max_train_steps: 1
+max_val_steps: 1
+
+image_size: 128
+use_dual_view: true
+image_key_a: "unit1_rgb5"
+image_key_b: "unit1_rgb6"
+
+detr_repo: "E:/6G/detr-main"
+detr_variant: "detr_resnet50"
+detr_pretrained: true
+detr_checkpoint_path: null
+detr_checkpoint_strict: true
+freeze_detr: true
+topk_queries: 16
+query_pool_mode: "score_weighted_mean"
+query_pool_heads: 4
+
+embed_dim: 128
+dropout: 0.1
+modality_dropout_p: 0.0
+consistency_lambda: 0.1
+branch_aux_lambda: 0.4
+gate_reg_lambda: 0.001
+
+device: "cuda"
+use_amp: true
+amp_dtype: "float16"
+allow_tf32: true
+cudnn_benchmark: true
+cpu_threads: 12

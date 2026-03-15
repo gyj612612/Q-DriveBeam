@@ -1,0 +1,52 @@
+seed: 2026
+scenario_root: "E:/6G/scenario36_merged"
+output_dir: "E:/6G/Code/outputs/scenario36_detr_fusion_gpu"
+
+train_ratio: 0.6
+val_ratio: 0.2
+batch_size: 12
+num_workers: 8
+persistent_workers: true
+prefetch_factor: 2
+epochs: 8
+lr: 0.0003
+weight_decay: 0.0001
+grad_clip: 1.0
+
+max_samples: 6000
+max_train_steps: 200
+max_val_steps: 60
+
+image_size: 224
+use_dual_view: true
+image_key_a: "unit1_rgb5"
+image_key_b: "unit1_rgb6"
+
+detr_repo: "E:/6G/detr-main"
+detr_variant: "detr_resnet50"
+detr_pretrained: true
+detr_checkpoint_path: null
+detr_checkpoint_strict: true
+freeze_detr: true
+topk_queries: 32
+query_pool_mode: "score_weighted_mean"
+query_pool_heads: 4
+cache_scene_features: true
+cache_batch_size: 64
+
+embed_dim: 256
+dropout: 0.1
+modality_dropout_p: 0.0
+consistency_lambda: 0.1
+branch_aux_lambda: 0.4
+gate_reg_lambda: 0.001
+early_stop_patience: 1
+early_stop_min_delta: 0.0005
+max_wall_time_min: 55.0
+
+device: "cuda"
+use_amp: true
+amp_dtype: "float16"
+allow_tf32: true
+cudnn_benchmark: true
+cpu_threads: 16
