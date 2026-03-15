@@ -3,7 +3,7 @@
 Clean research codebase for integrating DETR scene understanding into 6G beam prediction.
 
 This project is designed for:
-- fusion (not copying DETR/MM-MIMO-VI as-is),
+- fusion built from public backbones and internally adapted multimodal components,
 - reproducible experiments on `scenario36`,
 - clean extension to autonomous-driving simulation demos (CARLA).
 
@@ -118,3 +118,4 @@ src/beamfusion/
 - For frozen DETR runs, enable `cache_scene_features=true` to avoid repeated DETR forward every epoch.
 - Each run writes debug-friendly artifacts (`config.json`, `run_meta.json`, `train_log.jsonl`, `summary.json`).
 - CUDA acceleration requires a CUDA-enabled PyTorch build (`torch.cuda.is_available()` should be `True`).
+- The public release intentionally abstracts some comparative-baseline details that remain under active paper preparation.

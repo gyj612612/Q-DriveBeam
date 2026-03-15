@@ -1,61 +1,37 @@
-# CCF-A Oriented Research Plan (2026)
+# CCF-A Oriented Research Plan (Public Summary)
 
-## 1) Current Baseline Reality (from local logs)
+## Current Direction
 
-Observed scenario36 test accuracy bands:
-- early versions (`version1/version2/...`): around `0.31`.
-- improved multi-branch variants: around `0.54~0.56`.
-- strongest existing run snapshot: about `0.5569`.
+The current public model direction combines:
 
-Conclusion:
-- Existing IEMF-style gates improved substantially.
-- Performance now appears to be in a local plateau.
-- Next gain needs stronger scene understanding and robustness, not another shallow fusion tweak.
+- object-query-based scene representation
+- explicit communication-state encoders
+- uncertainty-aware multimodal fusion
+- consistency regularization across fused and branch predictions
 
-## 2) Unified Method (not copy-paste of DETR/MM-MIMO-VI)
+## Public Novelty Framing
 
-Proposed model: `Q-DriveBeam`
-- `DETR scene query tokens` from camera views (`rgb5/rgb6`).
-- `GPS encoder` + `Power encoder` for communication state.
-- `Uncertainty-gated fusion` (learned prior + inverse-uncertainty weighting).
-- `Consistency regularization` between fused prediction and branch predictions.
-- Optional simulator-physics consistency term in next stage.
+The repository is meant to highlight:
 
-Core principle:
-- Use DETR as a pretrained scene prior.
-- Keep communication branches explicit.
-- Learn fusion under uncertainty and enforce agreement.
+- query-conditioned beam prediction
+- robust multimodal fusion under missing modalities
+- reproducible ablation and robustness workflows
+- an engineering path toward simulator integration
 
-## 3) CCF-A Level Novelty Candidates
+## Experimental Structure
 
-Candidate novelty package for submission:
-- Query-conditioned beam prediction:
-  beam distribution predicted from object-set tokens rather than single pooled image feature.
-- Dual-consistency training:
-  model consistency (fused vs branch) + simulator consistency (predicted beam vs channel/trajectory constraints).
-- Robust missing-modality regime:
-  train-time modality dropout + uncertainty-aware gate reweighting.
-- Transfer to autonomous-driving demo:
-  same architecture running on CARLA stream with online beam recommendation.
+- deterministic configuration-driven runs
+- ablation studies for poolers, dropout, and model variants
+- robustness checks under sensor degradation and missing-modality stress
+- compatibility with downstream CARLA evaluation
 
-## 4) Experimental Protocol
+## Engineering Rules
 
-Mandatory:
-- Deterministic splits (fixed seeds, reported mean/std over 3-5 seeds).
-- Same train budget for all baselines.
-- Ablation on:
-  1) no DETR token branch,
-  2) no uncertainty gate,
-  3) no consistency,
-  4) single-view vs dual-view.
-- Robustness:
-  1) camera blur/occlusion,
-  2) GPS noise,
-  3) power signal corruption.
+- one config controls one run
+- outputs are written under `outputs/<exp_name>/`
+- modules remain separated by concern: `data`, `models`, `losses`, `train`
+- machine-specific datasets and local experiment artifacts stay outside the public commit history
 
-## 5) Engineering Rules
+## Public Release Note
 
-- One config controls one run.
-- All outputs saved to `outputs/<exp_name>/`.
-- No hidden hard-coded paths except config defaults.
-- Keep modules separated: `data`, `encoders`, `fusion`, `losses`, `train`.
+Some comparative-baseline details are intentionally kept abstract in the public repository while related paper work is still in progress.
